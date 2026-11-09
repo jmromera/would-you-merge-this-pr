@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+@theme {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --color-canvas: #0a0b0d;
+  --color-surface: #111318;
+  --color-raised: #171a21;
+  --color-line: #242932;
+  --color-line-strong: #343b48;
+
+  --color-fg: #e6e8eb;
+  --color-muted: #9099a8;
+  --color-faint: #6c7686;
+
+  /* The "merged" purple: the one accent, used for focus, selection and the primary action. */
+  --color-accent: #a371f7;
+  --color-accent-solid: #8957e5;
+
+  /* Diff semantics only. */
+  --color-add: #3fb950;
+  --color-del: #f85149;
+  --color-warn: #d29922;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--color-canvas);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--color-canvas);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+}
+
+@keyframes pending-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@utility animate-pending {
+  animation: pending-pulse 1s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
