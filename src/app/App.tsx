@@ -13,7 +13,9 @@ export default function App() {
   const { phase, index } = game
 
   // Every new screen or scenario starts at the top.
-  useEffect(() => window.scrollTo({ top: 0 }), [phase, index])
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [phase, index])
 
   return (
     <MotionConfig reducedMotion="user">
